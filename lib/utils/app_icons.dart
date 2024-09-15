@@ -1,0 +1,35 @@
+class AppIcons {
+  static String arrowBack = "assets/icons/arrow_back.svg";
+  static String calendarFull = "assets/icons/calendar_full.svg";
+  static String calendar = "assets/icons/calendar.svg";
+  static String cansel = "assets/icons/cansel.svg";
+  static String clockFull = "assets/icons/clock_full.svg";
+  static String clock = "assets/icons/clock.svg";
+  static String delete = "assets/icons/delete.svg";
+  static String design = "assets/icons/design.svg";
+  static String edit = "assets/icons/edit.svg";
+  static String flag = "assets/icons/flag.svg";
+  static String grocery = "assets/icons/grocery.svg";
+  static String health = "assets/icons/health.svg";
+  static String homeFull = "assets/icons/home_full.svg";
+  static String home = "assets/icons/home.svg";
+  static String home2 = "assets/icons/home2.svg";
+  static String logo = "assets/icons/logo.svg";
+  static String menu = "assets/icons/menu.svg";
+  static String movie = "assets/icons/movie.svg";
+  static String music = "assets/icons/music.svg";
+  static String repeat = "assets/icons/repeat.svg";
+  static String send = "assets/icons/send.svg";
+  static String social = "assets/icons/social.svg";
+  static String sport = "assets/icons/sport.svg";
+  static String tag = "assets/icons/tag.svg";
+  static String timer = "assets/icons/timer.svg";
+  static String university = "assets/icons/university.svg";
+  static String user = "assets/icons/user.svg";
+  static String userFull = "assets/icons/user_full.svg";
+  static String work = "assets/icons/work.svg";
+  static String theme = "assets/icons/theme.svg";
+  static String other = "assets/icons/other.svg";
+  static String settings = "assets/icons/settings.svg";
+  static String logout = "assets/icons/logout.svg";
+}
