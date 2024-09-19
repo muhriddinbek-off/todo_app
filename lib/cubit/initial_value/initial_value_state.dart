@@ -1,8 +1,12 @@
 class InitialValueState {
-  final String fullName;
+  final String accountImage;
+  final String firstName;
+  final String lastName;
   final bool isChange;
   InitialValueState({
-    this.fullName = '',
+    this.accountImage = '',
+    this.firstName = '',
+    this.lastName = '',
     this.isChange = false,
   });
 }

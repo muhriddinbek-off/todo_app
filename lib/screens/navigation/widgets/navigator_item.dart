@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/utils/app_size.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import '../../../utils/export_link.dart';
 
 class NavigatorItem extends StatelessWidget {
   final String icon;
@@ -25,7 +23,7 @@ class NavigatorItem extends StatelessWidget {
             colorFilter: ColorFilter.mode(Theme.of(context).disabledColor, BlendMode.srcIn),
           ),
           6.getH(),
-          Text(title, style: Theme.of(context).textTheme.labelMedium),
+          Text(title, style: Theme.of(context).textTheme.labelMedium).tr(),
         ],
       ),
     );

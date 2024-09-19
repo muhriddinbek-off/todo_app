@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/data/local/shared_preferenses_storage.dart';
-import 'package:todo_app/screens/routes.dart';
-import 'package:todo_app/utils/app_constanta.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:todo_app/utils/app_size.dart';
+import 'package:todo_app/utils/export_link.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,9 +12,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> getNextPage() async {
     Future.delayed(const Duration(seconds: 2), () {
       if (StorageRepository.getBool(key: AppConstanta.storageValue) == false) {
-        return Navigator.pushNamed(context, AppRouteName.onboarding);
+        return Navigator.pushNamedAndRemoveUntil(context, AppRouteName.onboarding, (context) => false);
       } else {
-        return Navigator.pushNamed(context, AppRouteName.navigationScreen);
+        return Navigator.pushNamedAndRemoveUntil(context, AppRouteName.navigationScreen, (context) => false);
       }
     });
   }

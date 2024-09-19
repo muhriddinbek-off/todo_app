@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:todo_app/cubit/onboarding/onboarding_cubit.dart';
-import 'package:todo_app/data/repository/onboarding_repository.dart';
-import 'package:todo_app/screens/onboarding/widgets/back_or_next.dart';
-import 'package:todo_app/screens/onboarding/widgets/onboarding_select_item.dart';
-import 'package:todo_app/screens/routes.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import 'package:todo_app/utils/export_link.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -53,8 +46,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         }
                       },
                       child: const Text(
-                        "Skip",
-                      )),
+                        "skip",
+                      ).tr()),
                 ),
                 Expanded(
                   flex: 3,
@@ -70,13 +63,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           OnboardingSelectItem(changeIndex: state),
                           Text(
                             onbardingItem[index].title,
+                            textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headlineLarge,
-                          ),
+                          ).tr(),
                           Text(
                             onbardingItem[index].description,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.titleMedium,
-                          ),
+                          ).tr(),
                         ],
                       );
                     }),

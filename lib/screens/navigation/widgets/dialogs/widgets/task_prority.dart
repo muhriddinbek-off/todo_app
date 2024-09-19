@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import 'package:todo_app/utils/export_link.dart';
 
 Future<dynamic> taskPrority(
   BuildContext context, {
@@ -18,10 +14,10 @@ Future<dynamic> taskPrority(
         builder: (context, setState) {
           return AlertDialog(
             icon: Text(
-              "Task Priority",
+              "task_priority",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800),
-            ),
+            ).tr(),
             title: const Divider(),
             content: SizedBox(
               width: double.maxFinite,
@@ -82,7 +78,7 @@ Future<dynamic> taskPrority(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: const Text("Cansel"),
+                      child: const Text("cancel").tr(),
                     ),
                   ),
                   Expanded(
@@ -99,9 +95,9 @@ Future<dynamic> taskPrority(
                           borderRadius: BorderRadius.circular(4.r),
                         ),
                         child: Text(
-                          "Save",
+                          "save",
                           style: Theme.of(context).textTheme.titleMedium!.copyWith(color: AppColors.white),
-                        ),
+                        ).tr(),
                       ),
                     ),
                   ),

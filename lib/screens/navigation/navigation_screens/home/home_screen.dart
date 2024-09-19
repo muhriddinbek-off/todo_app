@@ -1,18 +1,6 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/cubit/navigation/navigation_cubit.dart';
-import 'package:todo_app/cubit/navigation/navigation_state.dart';
-import 'package:todo_app/screens/navigation/navigation_screens/home/widgets/delete_task/delete_task.dart';
-import 'package:todo_app/screens/navigation/navigation_screens/home/widgets/empty_database_widget.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:todo_app/utils/app_size.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-import 'widgets/darawer/drawer_widget.dart';
-import 'widgets/task_item_widget.dart';
+
+import 'package:todo_app/utils/export_link.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -56,14 +44,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               title: Text(
-                "Home",
+                "home",
                 style: Theme.of(context).textTheme.titleLarge,
-              ),
+              ).tr(),
               actions: [
                 CircleAvatar(
                   backgroundColor: AppColors.c9741CC,
                   radius: 40.r,
-                  child: SvgPicture.asset(AppIcons.user),
+                  backgroundImage: StorageRepository.getString(key: AppConstanta.accountImage) != ""
+                      ? FileImage(
+                          File(
+                            StorageRepository.getString(key: AppConstanta.accountImage),
+                          ),
+                        )
+                      : AssetImage(AppImages.accountImage),
                 ),
               ],
               flexibleSpace: FlexibleSpaceBar(
@@ -75,29 +69,32 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverToBoxAdapter(child: 10.getH()),
             BlocBuilder<NavigationCubit, NavigationState>(
               builder: (context, state) {
+                if (state.tasks.isNotEmpty) {
+                  return SliverList.builder(
+                    itemCount: state.tasks.length,
+                    itemBuilder: (context, index) {
+                      return TaskItemWidget(
+                        taskModel: state.tasks[index],
+                        onNextPage: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DeleteTask(
+                                taskModel: state.tasks[index],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  );
+                }
                 if (state.tasks.isEmpty) {
                   return const SliverToBoxAdapter(
                     child: EmptyDatabaseWidget(),
                   );
                 }
-                return SliverList.builder(
-                  itemCount: state.tasks.length,
-                  itemBuilder: (context, index) {
-                    return TaskItemWidget(
-                      taskModel: state.tasks[index],
-                      onNextPage: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DeleteTask(
-                              taskModel: state.tasks[index],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                );
+                return const SizedBox();
               },
             ),
           ],

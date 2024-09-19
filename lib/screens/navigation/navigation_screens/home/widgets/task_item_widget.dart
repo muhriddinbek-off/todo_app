@@ -1,13 +1,6 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
-import 'package:todo_app/data/models/task_model.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:todo_app/utils/app_size.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+
+import '../../../../../utils/export_link.dart';
 
 class TaskItemWidget extends StatelessWidget {
   final TaskModel taskModel;
@@ -53,6 +46,7 @@ class TaskItemWidget extends StatelessWidget {
                       ),
                       6.getW(),
                       Container(
+                        width: width * 0.2,
                         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
                         decoration: BoxDecoration(
                           color: AppColors.c4181CC,
@@ -60,8 +54,9 @@ class TaskItemWidget extends StatelessWidget {
                         ),
                         child: Text(
                           taskModel.category,
+                          overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.labelMedium,
-                        ),
+                        ).tr(),
                       ),
                       6.getW(),
                       Container(

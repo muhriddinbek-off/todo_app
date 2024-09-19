@@ -1,15 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/cubit/initial_value/initial_value_cubit.dart';
-import 'package:todo_app/cubit/initial_value/initial_value_state.dart';
-import 'package:todo_app/screens/routes.dart';
-import 'package:todo_app/screens/start/widgets/input_widget.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:todo_app/utils/app_size.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import 'package:todo_app/utils/export_link.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -46,10 +36,13 @@ class _StartScreenState extends State<StartScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Welcome to UpTodo",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headlineLarge,
+                      SizedBox(
+                        width: width * 0.8,
+                        child: Text(
+                          "welcome_title",
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ).tr(),
                       ),
                     ],
                   ),
@@ -57,25 +50,25 @@ class _StartScreenState extends State<StartScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.w),
                     child: Text(
-                      "please enter your first and last name",
+                      "welcome_subtitle",
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleMedium,
-                    ),
+                    ).tr(),
                   ),
                   30.getH(),
                   InputWidget(
                     controller: _firstNameController,
-                    title: "First Name",
+                    title: "first_name".tr(),
                   ),
                   InputWidget(
                     controller: _lastNameController,
-                    title: "Last Name",
+                    title: "last_name".tr(),
                   ),
                   const Spacer(),
                   ZoomTapAnimation(
                     onTap: () {
                       if (_firstNameController.text.isNotEmpty && _lastNameController.text.isNotEmpty) {
-                        Navigator.pushNamed(context, AppRouteName.navigationScreen);
+                        Navigator.pushNamedAndRemoveUntil(context, AppRouteName.navigationScreen, (context) => false);
                         context.read<InitialValueCubit>().getCreateFullName(first: _firstNameController.text, last: _lastNameController.text);
                         context.read<InitialValueCubit>().getChangeValue(isChange: true);
                       } else {
@@ -84,7 +77,7 @@ class _StartScreenState extends State<StartScreen> {
                             behavior: SnackBarBehavior.floating,
                             margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                             backgroundColor: AppColors.cCC8441,
-                            content: const Text("Please enter your first and last name"),
+                            content: const Text("welcome_subtitle").tr(),
                           ),
                         );
                       }
@@ -98,9 +91,9 @@ class _StartScreenState extends State<StartScreen> {
                         borderRadius: BorderRadius.circular(4.r),
                       ),
                       child: Text(
-                        "Come on, let's go",
+                        "come",
                         style: Theme.of(context).textTheme.titleMedium!.copyWith(color: AppColors.white),
-                      ),
+                      ).tr(),
                     ),
                   ),
                   26.getH(),

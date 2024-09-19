@@ -1,17 +1,6 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
-import 'package:todo_app/cubit/navigation/navigation_cubit.dart';
-import 'package:todo_app/cubit/navigation/navigation_state.dart';
-import 'package:todo_app/data/models/task_model.dart';
-import 'package:todo_app/screens/routes.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:todo_app/utils/app_size.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+
+import '../../../../../../utils/export_link.dart';
 
 class DeleteTask extends StatelessWidget {
   final TaskModel taskModel;
@@ -72,11 +61,11 @@ class DeleteTask extends StatelessWidget {
                   ],
                 ),
                 30.getH(),
-                taskInfo(context, AppIcons.timer, "Task Time", DateFormat("dd MMMM hh:mm").format(DateTime(taskModel.dedline.year, taskModel.dedline.month, taskModel.dedline.day, taskModel.dedline.hour, taskModel.dedline.minute))),
+                taskInfo(context, AppIcons.timer, "task_time".tr(), DateFormat("dd MMMM hh:mm").format(DateTime(taskModel.dedline.year, taskModel.dedline.month, taskModel.dedline.day, taskModel.dedline.hour, taskModel.dedline.minute))),
                 30.getH(),
-                taskInfo(context, AppIcons.tag, "Task Category", taskModel.category),
+                taskInfo(context, AppIcons.tag, "task_category".tr(), taskModel.category.tr()),
                 30.getH(),
-                taskInfo(context, AppIcons.flag, "Task Priority", taskModel.priority.toString()),
+                taskInfo(context, AppIcons.flag, "task_priority".tr(), taskModel.priority.toString()),
                 30.getH(),
                 ZoomTapAnimation(
                   onTap: () {
@@ -85,13 +74,13 @@ class DeleteTask extends StatelessWidget {
                       builder: (context) {
                         return AlertDialog(
                           icon: Text(
-                            "Delete Task",
+                            "delete_task",
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.titleMedium,
-                          ),
+                          ).tr(),
                           title: const Divider(),
                           content: Text(
-                            "Are You sure you want to delete this task? Task title : ${taskModel.title}",
+                            "${"want_delete".tr()} ${"task_title1".tr()} : ${taskModel.title}",
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
@@ -106,7 +95,7 @@ class DeleteTask extends StatelessWidget {
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
-                                      child: const Text("Cancel"),
+                                      child: const Text("cancel").tr(),
                                     ),
                                   ),
                                   Expanded(
@@ -123,9 +112,9 @@ class DeleteTask extends StatelessWidget {
                                           borderRadius: BorderRadius.circular(4.r),
                                         ),
                                         child: Text(
-                                          "Delete",
+                                          "delete",
                                           style: Theme.of(context).textTheme.titleMedium!.copyWith(color: AppColors.white),
-                                        ),
+                                        ).tr(),
                                       ),
                                     ),
                                   ),
@@ -148,9 +137,9 @@ class DeleteTask extends StatelessWidget {
                       ),
                       10.getW(),
                       Text(
-                        'Delete Task',
+                        'delete_task',
                         style: Theme.of(context).textTheme.titleMedium!.copyWith(color: AppColors.aFF4949),
-                      ),
+                      ).tr(),
                     ],
                   ),
                 ),
@@ -176,9 +165,13 @@ class DeleteTask extends StatelessWidget {
               ),
             ),
             10.getW(),
-            Text(
-              '$taskName :',
-              style: Theme.of(context).textTheme.titleMedium,
+            SizedBox(
+              width: width * 0.4,
+              child: Text(
+                '$taskName :',
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
           ],
         ),

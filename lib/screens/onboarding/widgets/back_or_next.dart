@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import '../../../utils/export_link.dart';
 
 class BackOrNext extends StatelessWidget {
   final Function() backTap;
@@ -22,7 +20,7 @@ class BackOrNext extends StatelessWidget {
         ZoomTapAnimation(
           child: TextButton(
             onPressed: backTap,
-            child: const Text("Back"),
+            child: const Text("back").tr(),
           ),
         ),
         ZoomTapAnimation(
@@ -34,9 +32,9 @@ class BackOrNext extends StatelessWidget {
               borderRadius: BorderRadius.circular(4.r),
             ),
             child: Text(
-              index != 2 ? "NEXT" : "GET STARTED",
+              index != 2 ? "next" : "get_start",
               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: AppColors.white),
-            ),
+            ).tr(),
           ),
         )
       ],

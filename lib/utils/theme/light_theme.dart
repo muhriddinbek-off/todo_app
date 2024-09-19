@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:todo_app/utils/app_colors.dart';
+import 'package:todo_app/utils/export_link.dart';
 
 class LightTheme {
   static final ThemeData ligthTheme = ThemeData(
+    useMaterial3: true,
     scaffoldBackgroundColor: AppColors.white,
-    brightness: Brightness.light,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.white,
       systemOverlayStyle: SystemUiOverlayStyle(
@@ -32,6 +31,54 @@ class LightTheme {
       foregroundColor: AppColors.white,
     ),
     cardTheme: const CardTheme(color: Color(0xFFC4E3F7)),
+    colorScheme: const ColorScheme(
+      brightness: Brightness.light,
+      primary: Color(0xFF002B4A),
+      surfaceTint: Color(0xFF6BB2F1),
+      onPrimary: Color(0xFFFFFFFF),
+      primaryContainer: Color(0xFF1B4E77),
+      onPrimaryContainer: Color(0xFFD7E9FF),
+      secondary: Color(0xFF616200),
+      onSecondary: Color(0xFFFFFFFF),
+      secondaryContainer: Color(0xFFA1A241),
+      onSecondaryContainer: Color(0xFF101000),
+      tertiary: Color(0xFF366B00),
+      onTertiary: Color(0xFFFFFFFF),
+      tertiaryContainer: Color(0xFF94FF36),
+      onTertiaryContainer: Color(0xFF295300),
+      error: Color(0xFF815600),
+      onError: Color(0xFFFFFFFF),
+      errorContainer: Color(0xFFF5A815),
+      onErrorContainer: Color(0xFF3D2700),
+      surface: Color(0xFF443939),
+      onSurface: Color(0xFF1C1B1B),
+      onSurfaceVariant: Color(0xFF42474E),
+      outline: Color(0xFF72777F),
+      outlineVariant: Color(0xFFC2C7CF),
+      shadow: Color(0xFF000000),
+      scrim: Color(0xFF000000),
+      inverseSurface: Color(0xFF313030),
+      inversePrimary: Color(0xFF9ECBFA),
+      primaryFixed: Color(0xFFCFE5FF),
+      onPrimaryFixed: Color(0xFF001D34),
+      primaryFixedDim: Color(0xFF9ECBFA),
+      onPrimaryFixedVariant: Color(0xFF154A72),
+      secondaryFixed: Color(0xFFE7E87E),
+      onSecondaryFixed: Color(0xFF1C1D00),
+      secondaryFixedDim: Color(0xFFCBCC65),
+      onSecondaryFixedVariant: Color(0xFF494900),
+      tertiaryFixed: Color(0xFF89FE0A),
+      onTertiaryFixed: Color(0xFF0C2000),
+      tertiaryFixedDim: Color(0xFF77DF00),
+      onTertiaryFixedVariant: Color(0xFF275000),
+      surfaceDim: Color(0xFFDDD9D9),
+      surfaceBright: Color(0xFFDA8A8A),
+      surfaceContainerLowest: Color(0xFFFFFFFF),
+      surfaceContainerLow: Color(0xFFF7F3F2),
+      surfaceContainer: Color(0xFFF1EDEC),
+      surfaceContainerHigh: Color(0xFFEBE7E7),
+      surfaceContainerHighest: Color(0xFFE5E2E1),
+    ),
     textTheme: TextTheme(
       displayLarge: TextStyle(
         fontSize: 57.sp,

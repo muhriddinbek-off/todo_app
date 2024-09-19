@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/utils/app_size.dart';
+import 'package:todo_app/utils/export_link.dart';
 
 class ChangeUserName extends StatelessWidget {
   final ValueChanged<String> onFirst;
   final ValueChanged<String> onLast;
+  final Function() onChangeValue;
   const ChangeUserName({
     super.key,
     required this.onFirst,
     required this.onLast,
+    required this.onChangeValue,
   });
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       icon: Text(
-        "Change User Name",
+        "change_account_name".tr(),
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.titleMedium,
       ),
@@ -24,17 +26,17 @@ class ChangeUserName extends StatelessWidget {
         children: [
           TextField(
             onChanged: onFirst,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "First Name",
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              hintText: "first_name".tr(),
             ),
           ),
           10.getH(),
           TextField(
             onChanged: onLast,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Last Name",
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              hintText: "last_name".tr(),
             ),
           ),
         ],
@@ -49,13 +51,13 @@ class ChangeUserName extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text("Cancel"),
+                  child: Text("cancel".tr()),
                 ),
               ),
               Expanded(
                 child: TextButton(
-                  onPressed: () {},
-                  child: const Text("Save"),
+                  onPressed: onChangeValue,
+                  child: Text("save".tr()),
                 ),
               ),
             ],

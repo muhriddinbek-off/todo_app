@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/utils/app_colors.dart';
+import '../../../../../utils/export_link.dart';
 
 class TaskInputWidget extends StatelessWidget {
   final TextEditingController titleController;
@@ -24,7 +24,7 @@ class TaskInputWidget extends StatelessWidget {
             ),
             filled: true,
             fillColor: AppColors.transparent,
-            hintText: "Title",
+            hintText: "title".tr(),
             hintStyle: Theme.of(context).textTheme.titleLarge,
           ),
           minLines: 1,
@@ -42,7 +42,7 @@ class TaskInputWidget extends StatelessWidget {
             ),
             filled: true,
             fillColor: AppColors.transparent,
-            hintText: "Description",
+            hintText: "description".tr(),
             hintStyle: Theme.of(context).textTheme.titleLarge,
           ),
           minLines: 1,

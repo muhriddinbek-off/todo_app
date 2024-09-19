@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_app/cubit/navigation/navigation_cubit.dart';
-import 'package:todo_app/cubit/navigation/navigation_state.dart';
-import 'package:todo_app/screens/navigation/navigation_screens/home/home_screen.dart';
-import 'package:todo_app/screens/navigation/navigation_screens/profile/profile_screen.dart';
-import 'package:todo_app/screens/navigation/widgets/navigator_item.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:todo_app/utils/app_size.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-import 'widgets/dialogs/show_modal_bottom_sheet_widget.dart';
+import '../../utils/export_link.dart';
 
 class NavigationBarScreen extends StatefulWidget {
   const NavigationBarScreen({super.key});
@@ -36,9 +27,20 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                NavigatorItem(icon: state.onboardingIndex == 0 ? AppIcons.homeFull : AppIcons.home, title: "Home", onChangeIndex: () => context.read<NavigationCubit>().getSelectItemOnboarding(0)),
+                NavigatorItem(
+                    icon: state.onboardingIndex == 0 ? AppIcons.homeFull : AppIcons.home,
+                    title: "home",
+                    onChangeIndex: () {
+                      context.read<NavigationCubit>().getSelectItemOnboarding(0);
+                      context.read<NavigationCubit>().getAllTasksData();
+                    }),
                 40.getW(),
-                NavigatorItem(icon: state.onboardingIndex == 1 ? AppIcons.userFull : AppIcons.user, title: "Profile", onChangeIndex: () => context.read<NavigationCubit>().getSelectItemOnboarding(1)),
+                NavigatorItem(
+                    icon: state.onboardingIndex == 1 ? AppIcons.userFull : AppIcons.user,
+                    title: "profile",
+                    onChangeIndex: () {
+                      context.read<NavigationCubit>().getSelectItemOnboarding(1);
+                    }),
               ],
             ),
           ),

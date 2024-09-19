@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/data/models/category/choose_category_model.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:todo_app/utils/app_size.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import 'package:todo_app/utils/export_link.dart';
 
 Future<dynamic> taskCategory(
   BuildContext context, {
@@ -19,10 +14,10 @@ Future<dynamic> taskCategory(
         builder: (context, setState) {
           return AlertDialog(
             icon: Text(
-              "Choose Category",
+              "choose_category",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800),
-            ),
+            ).tr(),
             title: const Divider(),
             content: SizedBox(
               width: double.maxFinite,
@@ -65,9 +60,14 @@ Future<dynamic> taskCategory(
                           ],
                         ),
                         6.getH(),
-                        Text(
-                          categories[index].categoryName,
-                          style: Theme.of(context).textTheme.titleSmall,
+                        SizedBox(
+                          width: width * 0.18,
+                          child: Text(
+                            categories[index].categoryName,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ).tr(),
                         ),
                       ],
                     ),
@@ -91,9 +91,9 @@ Future<dynamic> taskCategory(
                       borderRadius: BorderRadius.circular(4.r),
                     ),
                     child: Text(
-                      "Add Category",
+                      "add_category",
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(color: AppColors.white),
-                    ),
+                    ).tr(),
                   ),
                 ),
               ),

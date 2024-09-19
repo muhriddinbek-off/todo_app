@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/utils/app_images.dart';
-import 'package:todo_app/utils/app_size.dart';
+
+import '../../../../../utils/export_link.dart';
 
 class EmptyDatabaseWidget extends StatelessWidget {
   const EmptyDatabaseWidget({super.key});
@@ -19,14 +19,14 @@ class EmptyDatabaseWidget extends StatelessWidget {
             child: Image.asset(AppImages.cheklist),
           ),
           Text(
-            "What do you want to do today?",
+            "task_title",
             style: Theme.of(context).textTheme.titleLarge,
-          ),
+          ).tr(),
           20.getH(),
           Text(
-            "Tap + to add your tasks",
+            "task_subtitle",
             style: Theme.of(context).textTheme.titleSmall,
-          ),
+          ).tr(),
         ],
       ),
     );

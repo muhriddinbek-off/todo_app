@@ -1,20 +1,19 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/cubit/initial_value/initial_value_cubit.dart';
-import 'package:todo_app/cubit/initial_value/initial_value_state.dart';
-import 'package:todo_app/data/local/shared_preferenses_storage.dart';
-import 'package:todo_app/screens/navigation/navigation_screens/profile/widget/change_user_name.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:todo_app/utils/app_constanta.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:todo_app/utils/app_size.dart';
+import '../../../../utils/export_link.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
+
+  String firstName = '';
+  String lastName = '';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,21 +27,34 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Profile",
+                    "profile".tr(),
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   16.getH(),
                   CircleAvatar(
                     radius: 50.h,
-                    child: SvgPicture.asset(
-                      AppIcons.user,
-                      height: 50.h,
-                    ),
+                    backgroundImage: StorageRepository.getString(key: AppConstanta.accountImage) != ""
+                        ? FileImage(
+                            File(
+                              StorageRepository.getString(key: AppConstanta.accountImage),
+                            ),
+                          )
+                        : AssetImage(AppImages.accountImage),
                   ),
                   16.getH(),
-                  Text(
-                    StorageRepository.getString(key: AppConstanta.fullName),
-                    style: Theme.of(context).textTheme.titleLarge,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        StorageRepository.getString(key: AppConstanta.firstName),
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      10.getW(),
+                      Text(
+                        StorageRepository.getString(key: AppConstanta.lastName),
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ],
                   ),
                   30.getH(),
                   Column(
@@ -51,39 +63,80 @@ class ProfileScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: Text(
-                          "Settings",
+                          "settings".tr(),
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ),
-                      getUserInfoItem(context, AppIcons.settings, "App Settings", () {}),
-                      16.getH(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: Text(
-                          "Account",
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                      ),
-                      getUserInfoItem(context, AppIcons.user, "Change account name", () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return ChangeUserName(
-                              onFirst: (value) {},
-                              onLast: (value) {},
-                            );
-                          },
-                        );
+                      getUserInfoItem(context, AppIcons.settings, "app_settings".tr(), () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsWidget()));
                       }),
                       16.getH(),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: Text(
-                          "Uptodo",
+                          "account".tr(),
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ),
-                      getUserInfoItem(context, AppIcons.logout, "Log out", () {}),
+                      getUserInfoItem(context, AppIcons.user, "change_account_name".tr(), () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return ChangeUserName(
+                              onFirst: (value) {
+                                firstName = value;
+                              },
+                              onLast: (value) {
+                                lastName = value;
+                              },
+                              onChangeValue: () {
+                                if (firstName.isNotEmpty && lastName.isNotEmpty) {
+                                  context.read<InitialValueCubit>().getCreateFullName(first: firstName, last: lastName);
+                                  Navigator.pop(context);
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text("info_full".tr()),
+                                    ),
+                                  );
+                                }
+                              },
+                            );
+                          },
+                        );
+                      }),
+                      getUserInfoItem(context, AppIcons.edit, "change_account_picture".tr(), () {
+                        context.read<InitialValueCubit>().getImage(_image, _picker);
+                      }),
+                      16.getH(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Text(
+                          "other".tr(),
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                      ),
+                      getUserInfoItem(
+                        context,
+                        AppIcons.logout,
+                        "log_out".tr(),
+                        () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return LogOutWidget(
+                                onTap: () {
+                                  StorageRepository.setBool(key: AppConstanta.storageValue, value: false);
+                                  StorageRepository.setString(key: AppConstanta.firstName, value: "");
+                                  StorageRepository.setString(key: AppConstanta.lastName, value: "");
+                                  context.read<OnboardingCubit>().getPage(0);
+                                  Navigator.pushNamedAndRemoveUntil(context, AppRouteName.splash, (context) => false);
+                                },
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ],

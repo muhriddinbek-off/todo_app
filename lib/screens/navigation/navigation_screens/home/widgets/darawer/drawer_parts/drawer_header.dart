@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:todo_app/data/local/shared_preferenses_storage.dart';
-import 'package:todo_app/utils/app_colors.dart';
-import 'package:todo_app/utils/app_constanta.dart';
-import 'package:todo_app/utils/app_icons.dart';
-import 'package:todo_app/utils/app_size.dart';
+
+import '../../../../../../../utils/export_link.dart';
 
 class DrawerHeaderPart extends StatelessWidget {
   const DrawerHeaderPart({super.key});
@@ -19,12 +14,27 @@ class DrawerHeaderPart extends StatelessWidget {
           CircleAvatar(
             backgroundColor: AppColors.c9741CC,
             radius: 30.r,
-            child: SvgPicture.asset(AppIcons.user),
+            backgroundImage: StorageRepository.getString(key: AppConstanta.accountImage) != ""
+                ? FileImage(
+                    File(
+                      StorageRepository.getString(key: AppConstanta.accountImage),
+                    ),
+                  )
+                : AssetImage(AppImages.accountImage),
           ),
           10.getH(),
-          Text(
-            StorageRepository.getString(key: AppConstanta.fullName),
-            style: Theme.of(context).textTheme.titleMedium,
+          Row(
+            children: [
+              Text(
+                StorageRepository.getString(key: AppConstanta.firstName),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              10.getW(),
+              Text(
+                StorageRepository.getString(key: AppConstanta.lastName),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ],
           ),
         ],
       ),

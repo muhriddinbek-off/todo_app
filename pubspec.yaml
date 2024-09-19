@@ -25,6 +25,8 @@ dependencies:
   intl: ^0.19.0
   syncfusion_flutter_calendar: ^19.4.0
   table_calendar: ^3.0.0
+  image_picker: ^1.1.2
+  easy_localization: ^3.0.7
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +43,9 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/images/
+    - assets/translations/uz.json
+    - assets/translations/en.json
+    - assets/translations/ru.json
 
 
 

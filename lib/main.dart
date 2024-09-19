@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/app/app.dart';
-import 'package:todo_app/data/local/shared_preferenses_storage.dart';
+import 'utils/export_link.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   StorageRepository.instance;
-  runApp(const App());
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en', 'EN'),
+        Locale('uz', 'UZ'),
+        Locale('ru', 'RU'),
+      ],
+      path: 'assets/translations',
+      useOnlyLangCode: true,
+      fallbackLocale: const Locale('uz', 'UZ'),
+      child: const App(),
+    ),
+  );
 }

@@ -1,14 +1,5 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:todo_app/cubit/initial_value/initial_value_cubit.dart';
-import 'package:todo_app/cubit/navigation/navigation_cubit.dart';
-import 'package:todo_app/cubit/onboarding/onboarding_cubit.dart';
-import 'package:todo_app/cubit/theme/theme_cubit.dart';
-import 'package:todo_app/screens/routes.dart';
-import 'package:todo_app/utils/theme/dark_theme.dart';
-import 'package:todo_app/utils/theme/light_theme.dart';
+import '../utils/export_link.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -21,6 +12,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => NavigationCubit()),
         BlocProvider(create: (context) => ThemeCubit()),
         BlocProvider(create: (context) => InitialValueCubit()),
+        BlocProvider(create: (context) => RadioValueChangeCubit()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
@@ -30,10 +22,13 @@ class App extends StatelessWidget {
           return AdaptiveTheme(
             light: LightTheme.ligthTheme,
             dark: DarkTheme.darkTheme,
-            initial: AdaptiveThemeMode.system,
+            initial: AdaptiveThemeMode.light,
             builder: (light, dark) {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
                 theme: light,
                 darkTheme: dark,
                 initialRoute: AppRouteName.splash,
