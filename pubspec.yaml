@@ -40,7 +40,6 @@ flutter:
 
   
   assets:
-    - assets/fonts/
     - assets/icons/
     - assets/images/
     - assets/translations/uz.json
@@ -50,13 +49,13 @@ flutter:
 
 
   # example:
-  fonts:
-    - family: Lato
-      fonts:
-        - asset: assets/fonts/Lato-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Lato-Bold.ttf
-          weight: 700
+  # fonts:
+  #   - family: Lato
+  #     fonts:
+  #       - asset: assets/fonts/Lato-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/Lato-Bold.ttf
+  #         weight: 700
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

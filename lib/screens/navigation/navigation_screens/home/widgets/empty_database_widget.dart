@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../utils/export_link.dart';
 
 class EmptyDatabaseWidget extends StatelessWidget {
@@ -20,11 +19,13 @@ class EmptyDatabaseWidget extends StatelessWidget {
           ),
           Text(
             "task_title",
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge,
           ).tr(),
           20.getH(),
           Text(
             "task_subtitle",
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleSmall,
           ).tr(),
         ],
