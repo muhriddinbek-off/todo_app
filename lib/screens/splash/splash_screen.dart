@@ -12,9 +12,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> getNextPage() async {
     Future.delayed(const Duration(seconds: 2), () {
       if (StorageRepository.getBool(key: AppConstanta.storageValue) == false) {
-        return Navigator.pushNamedAndRemoveUntil(context, AppRouteName.onboarding, (context) => false);
+        if (mounted) {
+          Navigator.pushNamedAndRemoveUntil(context, AppRouteName.onboarding, (context) => false);
+        }
       } else {
-        return Navigator.pushNamedAndRemoveUntil(context, AppRouteName.navigationScreen, (context) => false);
+        if (mounted) {
+          Navigator.pushNamedAndRemoveUntil(context, AppRouteName.navigationScreen, (context) => false);
+        }
       }
     });
   }
